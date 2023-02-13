@@ -3,7 +3,7 @@
 
 Este programa calcula el plano contenido por dos líneas. Puede ser útil para calcular el buzamiento real de un plano a partir de sus buzamientos aparentes.
 
-Para utilizarlo (En Windows) solo tienes que descargar el archivo .exe disponible en la pestaña de "releases" del repositorio: (https://github.com/MGMGXCV/Calc-Linea-Plano).
+Para utilizarlo (En Windows) solo tienes que descargar el archivo .exe disponible en la pestaña de "releases" del repositorio: (https://github.com/MGMGXCV/Calc-Linea-Plano/releases).
 
 Cuando lo abras te pedirá que le des a intro para comenzar. Seguidamente te pedirá que introduzcas el buzamiento (o inmersión) de la primera línea, después te pedirá el sentido de buzamiento de la primera línea (Es importante que la primera línea sea la que menor ángulo de sentido de buzamiento tenga, ya que si se introduce primero la de mayor ángulo puede calcular un resultado incorrecto) 
 Después te pedirá la segunda línea de la misma forma. 
@@ -24,7 +24,7 @@ ENGLISH:
 
 This program calculates the plane contained by two lines. It can be useful to calculate the real dip of a plane from its apparent dips.
 
-To use it (With Windows) you only have to download the .exe file available in the releases tab of the repository (https://github.com/MGMGXCV/Calc-Linea-Plano).
+To use it (With Windows) you only have to download the .exe file available in the releases tab of the repository (https://github.com/MGMGXCV/Calc-Linea-Plano/releases).
 
 When you open it, it will ask you to press enter to start. Next it will ask you to enter the dip (plunge) of the first line, then it will ask you for the dip direction (trend) of the first line (It is important that the first line is the one with the smallest dip direction angle, because if you enter the one with the largest angle first it may calculate an incorrect result). 
 Then the program will ask you about the second line with the same format.  

@@ -105,14 +105,10 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
 
     if true_dip_direction <0:
         warn1 = messagebox.showwarning('¡Error!',  'Has introducido la línea con mayor sentido de buzamiento antes que la segunda', parent=parent1)
-
-
-    # Representar el plano obtenido en el Stereo
-    ax1.plane(true_dip_direction -90 , true_dip, "b" , linewidth=2)
-    ax1.grid()
-    ax1.text(0,-2,"Martín García Martín 2023 ©")
-    plt.show()
-
-
-
+    else:
+        # Representar el plano obtenido en el Stereo
+        ax1.plane(true_dip_direction - 90, true_dip, "b", linewidth=2)
+        ax1.grid()
+        ax1.text(0, -2, "Martín García Martín 2023 ©")
+        plt.show()
 

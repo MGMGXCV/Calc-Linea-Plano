@@ -1,10 +1,19 @@
 import math
 import mplstereonet
 import matplotlib.pyplot as plt
+import tkinter
+from tkinter import messagebox
+
+parent = tkinter.Tk()  # Create the object
+parent.overrideredirect(1)  # Avoid it appearing and then disappearing quickly
+parent.withdraw()  # Hide the window as we do not want to see this one
+warn = messagebox.showwarning('¡Leer Antes de Usar!','IMPORTANTE: INTRODUCE PRIMERO LA LÍNEA CON EL MENOR SENTIDO DE BUZAMIENTO', parent=parent)
+
 while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para finalizar: ") != "salir":
-    print("Bienvenido, esta calculadora te ayudará a encontar el plano que contiene a dos líneas"),
-    print("Es importante que introduzcas primero la línea cuyo sentido de buzamiento es menor")
     print("Martín García Martín 2023 ©")
+    print("Bienvenido, esta calculadora te ayudará a encontar el plano que contiene a dos líneas"),
+    print('Es importante que introduzcas primero la línea cuyo sentido de buzamiento es menor')
+
     def true_dip(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction):
         #Para pasar de Strike y Dip a Buz y sentido de Buz
         dip1 = 90 - apparent_dip1
@@ -78,6 +87,11 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
     #Variable resultado
     resultado = "Solución: " + tdstr + "/"+ tdpdstr + "º"
 
+    # Ventana para fallo
+    parent1 = tkinter.Tk()  # Create the object
+    parent1.overrideredirect(1)  # Avoid it appearing and then disappearing quickly
+    parent1.withdraw()  # Hide the window as we do not want to see this one
+
     #Crear Gráfico
 
     fig = plt.figure()
@@ -89,9 +103,16 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
 
     ax1.line(apparent_dip2,apparent_dip2_direction, linewidth=2)
 
+    if true_dip_direction <0:
+        warn1 = messagebox.showwarning('¡Error!',  'Has introducido la línea con mayor sentido de buzamiento antes que la segunda', parent=parent1)
+
+
     # Representar el plano obtenido en el Stereo
     ax1.plane(true_dip_direction -90 , true_dip, "b" , linewidth=2)
     ax1.grid()
     ax1.text(0,-2,"Martín García Martín 2023 ©")
     plt.show()
+
+
+
 

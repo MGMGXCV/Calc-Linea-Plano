@@ -36,5 +36,6 @@ If everything went well, the line of the calculated plane will "pass" through th
 To calculate another new plane, close the plot (not the console) and the process will start again.
 
 
-Thanks to the mathplotlib and mplstereonet and pyinstaller libraries 
+Thanks to the mathplotlib and mplstereonet and pyinstaller libraries. 
+
 Created by Martín García Martín 2023.

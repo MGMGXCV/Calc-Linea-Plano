@@ -21,6 +21,7 @@ Creado por Martín García Martín 2023.
 
 
 ENGLISH:
+
 This program calculates the plane contained by two lines. It can be useful to calculate the real dip of a plane from its apparent dips.
 
 To use it you only have to download the .exe file available in the releases tab of the repository (https://github.com/MGMGXCV/Calc-Linea-Plano).

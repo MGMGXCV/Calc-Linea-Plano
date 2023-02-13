@@ -15,7 +15,7 @@ Si todo ha ido bien la línea del plano calculado pasará por los dos puntos. En
 Para calcular otro plano nuevo cierra el gráfico (no la consola) y el proceso comenzará de nuevo.
 
 
-Agradecimientos a las librerías mathplotlib y mplstereonet y pyinstaller. 
+Agradecimientos a las librerías mathplotlib y mplstereonet tkinter y pyinstaller. 
 
 Creado por Martín García Martín 2023.
 
@@ -36,6 +36,6 @@ If everything went well, the line of the calculated plane will "pass" through th
 To calculate another new plane, close the plot (not the console) and the process will start again.
 
 
-Thanks to the mathplotlib and mplstereonet and pyinstaller libraries. 
+Thanks to the mathplotlib and mplstereonet tkinter pyinstaller libraries. 
 
 Created by Martín García Martín 2023.

@@ -15,8 +15,12 @@ Si todo ha ido bien la línea del plano calculado pasará por los dos puntos. En
 Para calcular otro plano nuevo cierra el gráfico (no la consola) y el proceso comenzará de nuevo.
 
 
-Agradecimientos a las librerías mathplotlib y mplstereonet. 
+Agradecimientos a las librerías mathplotlib y mplstereonet y pyinstaller. 
 
+Creado por Martín García Martín 2023.
+
+
+ENGLISH:
 This program calculates the plane contained by two lines. It can be useful to calculate the real dip of a plane from its apparent dips.
 
 To use it you only have to download the .exe file available in the releases tab of the repository (https://github.com/MGMGXCV/Calc-Linea-Plano).
@@ -31,4 +35,5 @@ If everything went well, the line of the calculated plane will "pass" through th
 To calculate another new plane, close the plot (not the console) and the process will start again.
 
 
-Thanks to the mathplotlib and mplstereonet libraries. 
+Thanks to the mathplotlib and mplstereonet and pyinstaller libraries 
+Created by Martín García Martín 2023.

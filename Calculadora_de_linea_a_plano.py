@@ -7,7 +7,8 @@ from tkinter import messagebox
 parent = tkinter.Tk()  # Create the object
 parent.overrideredirect(1)  # Avoid it appearing and then disappearing quickly
 parent.withdraw()  # Hide the window as we do not want to see this one
-warn = messagebox.showwarning('¡Leer Antes de Usar!','IMPORTANTE: INTRODUCE PRIMERO LA LÍNEA CON EL MENOR SENTIDO DE BUZAMIENTO', parent=parent)
+warn = messagebox.showinfo('Calculadora de línea a plano','¡Bienvenido! Pulsa aceptar para continuar, después, pulsa intro para iniciar la calculadora.'
+                                                          '                                                     Una vez realizado el cálculo, cierra la ventana de Stereonet para comenzar de nuevo', parent=parent)
 
 while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para finalizar: ") != "salir":
     print("Martín García Martín 2023 ©")
@@ -42,11 +43,21 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
         print("El buzamiento del Plano es:", true_dip)
         return true_dip
 
-    apparent_dip1 = float(input("Introduce el buzamiento de la primera línea: "))
-    apparent_dip1_direction = float(input("Introduce el sentido de buzamiento de la primera línea: "))
-    apparent_dip2 = float(input("Introduce el buzamiento de la segunda línea: "))
-    apparent_dip2_direction = float(input("Introduce el sentido de Buzamiento de la segunda línea: "))
+    blinea1 = float(input("Introduce el buzamiento de la primera línea: "))
+    dblinea1 = float(input("Introduce el sentido de buzamiento de la primera línea: "))
+    blinea2 = float(input("Introduce el buzamiento de la segunda línea: "))
+    dblinea2 = float(input("Introduce el sentido de Buzamiento de la segunda línea: "))
 
+    if dblinea1 > dblinea2:
+        apparent_dip1_direction = dblinea2
+        apparent_dip1 = blinea2
+        apparent_dip2_direction = dblinea1
+        apparent_dip2 = blinea1
+    else:
+        apparent_dip1_direction = dblinea1
+        apparent_dip1 = blinea1
+        apparent_dip2_direction = dblinea2
+        apparent_dip2 = blinea2
 
     def true_dip_direction(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction):
         #Para pasar de Strike y Dip a Buz y sentido de Buz
@@ -111,4 +122,3 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
         ax1.grid()
         ax1.text(0, -2, "Martín García Martín 2023 ©")
         plt.show()
-

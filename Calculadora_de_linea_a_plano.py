@@ -13,7 +13,6 @@ warn = messagebox.showinfo('Calculadora de línea a plano','¡Bienvenido! Pulsa 
 while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para finalizar: ") != "salir":
     print("Martín García Martín 2023 ©")
     print("Bienvenido, esta calculadora te ayudará a encontar el plano que contiene a dos líneas"),
-    print('Es importante que introduzcas primero la línea cuyo sentido de buzamiento es menor')
 
     def true_dip(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction):
         #Para pasar de Strike y Dip a Buz y sentido de Buz

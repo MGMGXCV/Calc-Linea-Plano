@@ -76,10 +76,12 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
         normal_y = z1 * x2 - z2 * x1
         normal_z = x1 * y2 - x2 * y1
 
-        #Para calcular el plano que contiene a ambas lineas
+        # Para calcular el plano que contiene a ambas lineas
         true_dip_direction = math.degrees(math.atan2(normal_y, normal_x))
-        if true_dip_direction < 360 and apparent_dip1_direction<apparent_dip2_direction:
-            true_dip_direction +=180
+        if true_dip_direction < 360 and apparent_dip2_direction - apparent_dip1_direction < 180:
+            true_dip_direction += 180
+        elif true_dip_direction < 0:
+            true_dip_direction += 360
         print("El sentido de Buzamiento del Plano es:", true_dip_direction)
         return true_dip_direction
 
@@ -121,3 +123,4 @@ while input("Presiona intro para ejecutar el proceso, o escribe 'salir' para fin
         ax1.grid()
         ax1.text(0, -2, "Martín García Martín 2023 ©")
         plt.show()
+

@@ -1,0 +1,173 @@
+import math
+import mplstereonet
+import matplotlib.pyplot as plt
+import tkinter
+from tkinter import messagebox
+import tkinter as tk
+
+
+def reiniciar_programa():
+    respuesta = messagebox.askyesno("Reiniciar", "¿Deseas reiniciar el programa?")
+    if respuesta == True:
+        # reiniciar el programa
+        return True
+        
+    else:
+        return False
+			
+def main():
+    while True:
+        class InputWindow:
+            def __init__(self, master):
+                self.master = master
+                self.master.title("Entrada de línea de buzamiento")
+
+                # Etiquetas y cuadros de entrada para la primera línea
+                tk.Label(master, text="Introduce el buzamiento de la primera línea: ").grid(row=0, column=0)
+                self.blinea1_entry = tk.Entry(master)
+                self.blinea1_entry.grid(row=0, column=1)
+                tk.Label(master, text="Introduce el sentido de buzamiento de la primera línea: ").grid(row=1, column=0)
+                self.dblinea1_entry = tk.Entry(master)
+                self.dblinea1_entry.grid(row=1, column=1)
+
+                # Etiquetas y cuadros de entrada para la segunda línea
+                tk.Label(master, text="Introduce el buzamiento de la segunda línea: ").grid(row=2, column=0)
+                self.blinea2_entry = tk.Entry(master)
+                self.blinea2_entry.grid(row=2, column=1)
+                tk.Label(master, text="Introduce el sentido de buzamiento de la segunda línea: ").grid(row=3, column=0)
+                self.dblinea2_entry = tk.Entry(master)
+                self.dblinea2_entry.grid(row=3, column=1)
+
+                # Botón para enviar la entrada
+                tk.Button(master, text="Enviar", command=self.submit).grid(row=4, column=1, pady=10)
+
+            def submit(self):
+                blinea1 = float(self.blinea1_entry.get())
+                dblinea1 = float(self.dblinea1_entry.get())
+                blinea2 = float(self.blinea2_entry.get())
+                dblinea2 = float(self.dblinea2_entry.get())
+
+                if dblinea1 > dblinea2:
+                    apparent_dip1_direction = dblinea2
+                    apparent_dip1 = blinea2
+                    apparent_dip2_direction = dblinea1
+                    apparent_dip2 = blinea1
+                else:
+                    apparent_dip1_direction = dblinea1
+                    apparent_dip1 = blinea1
+                    apparent_dip2_direction = dblinea2
+                    apparent_dip2 = blinea2
+
+                # Cierra la ventana
+                self.master.destroy()
+
+                def true_dip(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction):
+                    # Para pasar de Strike y Dip a Buz y sentido de Buz
+                    dip1 = 90 - apparent_dip1
+                    dip2 = 90 - apparent_dip2
+
+                    # Para convertir los angulos en cordenadas cartesianas
+                    x1 = math.cos(math.radians(apparent_dip1_direction)) * math.sin(math.radians(dip1))
+                    y1 = math.sin(math.radians(apparent_dip1_direction)) * math.sin(math.radians(dip1))
+                    z1 = math.cos(math.radians(dip1))
+                    x2 = math.cos(math.radians(apparent_dip2_direction)) * math.sin(math.radians(dip2))
+                    y2 = math.sin(math.radians(apparent_dip2_direction)) * math.sin(math.radians(dip2))
+                    z2 = math.cos(math.radians(dip2))
+
+                    # Calcula el producto cruzado de los dos vectores para saca el vector normal del plano
+                    normal_x = y1 * z2 - y2 * z1
+                    normal_y = z1 * x2 - z2 * x1
+                    normal_z = x1 * y2 - x2 * y1
+
+                    # Calcular el producto escalar del vector normal y el vector vertical para obtener el coseno entre el plano y la horizontal
+                    cos_angle = normal_z / math.sqrt(normal_x ** 2 + normal_y ** 2 + normal_z ** 2)
+
+                    # Convertir el coseno a grados
+                    true_dip = 180 - math.degrees(math.acos(cos_angle))
+                    if true_dip > 90:
+                        true_dip = 180 - true_dip
+                    print("El buzamiento del Plano es:", true_dip)
+                    return true_dip
+
+                def true_dip_direction(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction):
+                    # Para pasar de Strike y Dip a Buz y sentido de Buz
+                    dip1 = 90 - apparent_dip1
+                    dip2 = 90 - apparent_dip2
+
+                    # Para convertir los angulos en cordenadas cartesianas
+                    x1 = math.cos(math.radians(apparent_dip1_direction)) * math.sin(math.radians(dip1))
+                    y1 = math.sin(math.radians(apparent_dip1_direction)) * math.sin(math.radians(dip1))
+                    z1 = math.cos(math.radians(dip1))
+                    x2 = math.cos(math.radians(apparent_dip2_direction)) * math.sin(math.radians(dip2))
+                    y2 = math.sin(math.radians(apparent_dip2_direction)) * math.sin(math.radians(dip2))
+                    z2 = math.cos(math.radians(dip2))
+
+                    # Calcula el producto cruzado de los dos vectores para saca el vector normal del plano
+                    normal_x = y1 * z2 - y2 * z1
+                    normal_y = z1 * x2 - z2 * x1
+                    normal_z = x1 * y2 - x2 * y1
+
+                    # Para calcular el plano que contiene a ambas lineas
+                    true_dip_direction = math.degrees(math.atan2(normal_y, normal_x))
+                    if true_dip_direction < 360 and apparent_dip2_direction - apparent_dip1_direction < 180:
+                        true_dip_direction += 180
+                    elif true_dip_direction < 0:
+                        true_dip_direction += 360
+                    print("El sentido de Buzamiento del Plano es:", true_dip_direction)
+                    return true_dip_direction
+
+                true_dip = true_dip(apparent_dip1, apparent_dip1_direction, apparent_dip2, apparent_dip2_direction)
+                true_dip_direction = true_dip_direction(apparent_dip1, apparent_dip1_direction, apparent_dip2,
+                                                        apparent_dip2_direction)
+
+                # Para convertir los valores numéricos en cadenas de texto. Para salida numérica en la gráfica.
+                l1b = str(round((apparent_dip1)))
+                l1db = str(round((apparent_dip1_direction)))
+                l2b = str(round((apparent_dip2)))
+                l2db = str(round((apparent_dip2_direction)))
+
+                tdstr = str(round(true_dip))
+                if round(true_dip_direction) >= 100:
+                    tdpdstr = str(round(true_dip_direction))
+                else:
+                    tdpdstr = "0" + str(round(true_dip_direction))
+
+
+
+                # Variable resultado
+                resultado = "Solución: " + tdstr + "/" + tdpdstr + "º"
+                Entrada = "L1:" + l1b + "/" + l1db + "º"
+                Entrada2 = "L2:" +l2b + "/" + l2db +"º"
+
+                # Crear Gráfico
+
+                fig = plt.figure()
+                ax1 = fig.add_subplot(111, projection='stereonet')
+                plt.title(resultado, fontsize=12, loc='center', )
+
+                # Representar las lineas
+                ax1.line(apparent_dip1, apparent_dip1_direction, linewidth=2)
+
+                ax1.line(apparent_dip2, apparent_dip2_direction, linewidth=2)
+
+                # Representar el plano obtenido en el Stereo
+                ax1.plane(true_dip_direction - 90, true_dip, "b", linewidth=2)
+                ax1.grid()
+                ax1.text(0, -2, "Martín García Martín 2023 ©")
+                ax1.text(-2.9, 1, Entrada)
+                ax1.text(-2.72, 1.2, Entrada2)
+                plt.show()
+
+
+        # Crea la ventana
+        root = tk.Tk()
+
+        # Crea la ventana de entrada y entra en el bucle principal de Tkinter
+        input_window = InputWindow(root)
+        root.mainloop()  
+ # Mostrar el cuadro de diálogo para preguntar si el usuario desea reiniciar el programa
+        reiniciar = reiniciar_programa()
+        if not reiniciar:
+            break
+# Iniciar el programa
+main()
